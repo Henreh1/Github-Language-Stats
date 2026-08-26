@@ -23,7 +23,9 @@ class GitHubClient:
         excluded_repos = excluded_repos or []
         repos = []
 
-        for repo in self.user.get_repos(affiliation='owner'):
+        for repo in self.user.get_repos(
+    affiliation='owner,organization_member'
+):
             if repo.name not in excluded_repos:
                 if include_forks or not repo.fork:
                     repos.append(repo)
