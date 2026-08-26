@@ -2,6 +2,7 @@ import json
 import os
 from io import BytesIO
 from typing import List, Tuple, Union, Dict, Callable
+from urllib.parse import quote
 
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as path_effects
@@ -97,7 +98,7 @@ class Visualizer:
 
     def _get_badge_url(self, language: str) -> str:
         lang_config = self.languages.get(language, {})
-        lang_name = language.replace(' ', '_')
+        lang_name = quote(language.replace(' ', '_'), safe='')
 
         if lang_config and lang_config.get('badge_color'):
             color = lang_config['badge_color']
