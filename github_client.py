@@ -18,7 +18,7 @@ class GitHubClient:
     def is_repo_private(self, repo) -> bool:
         return repo.private
 
-        def get_all_repos(self, excluded_repos: Optional[List[str]] = None,
+    def get_all_repos(self, excluded_repos: Optional[List[str]] = None,
                       include_forks: bool = False) -> List:
         excluded_repos = excluded_repos or []
         repos = []
