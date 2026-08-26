@@ -18,27 +18,22 @@ class GitHubClient:
     def is_repo_private(self, repo) -> bool:
         return repo.private
 
-    def get_all_repos(self, excluded_repos: Optional[List[str]] = None,
-                  include_forks: bool = False) -> List:
-    excluded_repos = excluded_repos or []
-    repos = []
+        def get_all_repos(self, excluded_repos: Optional[List[str]] = None,
+                      include_forks: bool = False) -> List:
+        excluded_repos = excluded_repos or []
+        repos = []
 
-    allowed_owners = {
-        self.user.login,
-        'Limelight-Dead-as-Disco-Modding',
-    }
+        allowed_owners = {
+            self.user.login,
+            'Limelight-Dead-as-Disco-Modding',
+        }
 
-    for repo in self.user.get_repos(
-        affiliation='owner,organization_member'
-    ):
-        if repo.owner.login not in allowed_owners:
-            continue
+        for repo in self.user.get_repos(
+            affiliation='owner,organization_member'
+        ):
+            if repo.owner.login not in allowed_owners:
+                continue
 
-        if repo.name not in excluded_repos:
-            if include_forks or not repo.fork:
-                repos.append(repo)
-
-    return repos
             if repo.name not in excluded_repos:
                 if include_forks or not repo.fork:
                     repos.append(repo)
